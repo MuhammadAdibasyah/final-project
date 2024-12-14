@@ -1,0 +1,74 @@
+package pages.web;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.Assert;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+
+import static helper.Utility.driver;
+
+public class CheckoutPage {
+
+    By phones = By.xpath("(//a[normalize-space()='Phones'])");
+    By phoneProduct = By.xpath("(//h4)[6]");
+    By addToCart = By.xpath("//a[.='Add to cart']");
+    By cart = By.xpath("//a[@id='cartur']");
+    By home = By.xpath("//a[contains(.,'Home')]");
+    By deleteProduct = By.xpath("//a[contains(.,'Delete')]");
+    By placeOrder = By.xpath("//button[normalize-space()='Place Order']");
+    By product1 = By.xpath("(//td[normalize-space()])[1]");
+    By product2 = By.xpath("(//td[normalize-space()])[4]");
+    By nameField =  By.xpath("//input[@id='name']");
+    By country =  By.xpath("//input[@id='country']");
+    By city =  By.xpath("//input[@id='city']");
+    By credit =  By.xpath("//input[@id='card']");
+    By month =  By.xpath("//input[@id='month']");
+    By year =  By.xpath("//input[@id='year']");
+    By purchase = By.xpath("//button[normalize-space()='Purchase']");
+    By thanks = By.xpath("//h2[.='Thank you for your purchase!']");
+
+
+    public void clickProduct(){
+        driver.findElement(phones).click();
+        driver.findElement(phoneProduct).click();
+    }
+
+    public void userClickAddToCart() throws InterruptedException {
+        driver.findElement(addToCart).click();
+        Thread.sleep(2000);
+
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+
+    }
+
+    public void userClickCartMenu() throws InterruptedException {
+        driver.findElement(cart).click();
+    }
+
+    public void userClickPlaceOrder() {
+        driver.findElement(placeOrder).click();
+    }
+
+    public void userFill(String name, String Country, String City, String Credit, String Month, String Year) {
+        driver.findElement(nameField).sendKeys(name);
+        driver.findElement(country).sendKeys(Country);
+        driver.findElement(city).sendKeys(City);
+        driver.findElement(credit).sendKeys(Credit);
+        driver.findElement(month).sendKeys(Month);
+        driver.findElement(year).sendKeys(Year);
+    }
+
+    public void userClickPurchase() {
+        driver.findElement(purchase).click();
+    }
+
+    public void userGetMessageThanksForYourPurchases() throws InterruptedException {
+        Assert.assertEquals(driver.findElement(thanks).isDisplayed(),true);
+        Thread.sleep(1500);
+    }
+
+
+}
