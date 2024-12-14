@@ -1,5 +1,5 @@
 @web
-Feature: product phones,laptops and monitors
+Feature: product list
 
   Background:
     Given user on login page
@@ -7,17 +7,32 @@ Feature: product phones,laptops and monitors
     And user fill password with "Password!2"
     And user click login button
 
-  Scenario: validate product phones display
+  Scenario Outline: validate product list based on category
     Given user on the home page
-    When user click phones categories
-    Then user see all phones product
+    When user click "<categories>"
+    Then user see all "<list product>"
 
-  Scenario: validate product laptops display
-    Given user on the home page
-    When user click laptops categories
-    Then user see all laptops product
+    Examples:
 
-  Scenario: validate product monitors display
+    |   categories  |      list product               |
+    |   Phones      |                                 |
+    |   Laptops     |                                 |
+    |   Monitors    |                                 |
+
+
+  Scenario Outline: validate product detail per item
     Given user on the home page
-    When user click monitors categories
-    Then user see all monitors product
+    When user click "<product>"
+    Then user see "<detail product>"
+
+  Examples:
+    |   product     |      detail product             |
+    |   Phones      |                                 |
+    |   Laptops     |                                 |
+    |   Monitors    |                                 |
+
+  Scenario: user add product to cart
+    Given user on the home page
+    When user click product
+    And user click add to cart
+    Then get allert message
