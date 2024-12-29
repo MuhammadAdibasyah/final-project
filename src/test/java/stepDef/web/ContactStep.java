@@ -24,7 +24,7 @@ public class ContactStep {
         contactPage.userClickContactMenu();
     }
 
-    @And("user input contact name ,contact email and message")
+    @And("user input contact name, contact email and message")
     public void userInputContactNameContactEmailAndMessage() {
         contactPage.userInputContactNameContactEmailAndMessage();
     }

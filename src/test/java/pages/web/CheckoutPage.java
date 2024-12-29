@@ -28,6 +28,7 @@ public class CheckoutPage {
     By purchase = By.xpath("//button[normalize-space()='Purchase']");
     By thanks = By.xpath("//h2[.='Thank you for your purchase!']");
     By delete = By.xpath("//a[.='Delete']");
+    By deleteFirst = By.xpath("(//a[.='Delete'])[1]");
     By table = By.xpath("//tbody[@id='tbodyid']/tr");
 
 
@@ -79,8 +80,13 @@ public class CheckoutPage {
     }
 
     public void userClickDeleteProduct() throws InterruptedException {
-        driver.findElement(delete).click();
-        Thread.sleep(2000);
+        List<WebElement> elements = driver.findElements(delete);
+        int size = elements.size();
+
+        for (int i = 0; i < size; i++) {
+            driver.findElement(deleteFirst).click();
+            Thread.sleep(2000);
+        }
     }
 
     public void validateProductItem(){

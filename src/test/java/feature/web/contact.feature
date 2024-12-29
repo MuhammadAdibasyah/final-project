@@ -7,14 +7,14 @@ Feature: contact
     And user fill password with "Password!2"
     And user click login button
 
-  Scenario : user input message in contact page
+  Scenario: user input message in contact page
     Given user on the homepage
     When user click contact menu
-    And user input contact name ,contact email and message
+    And user input contact name, contact email and message
     And user click send message
     Then user get alert message "Thanks for the message!!"
 
-  Scenario: user input message in contact page
+  Scenario: user close modal in contact page
     Given user on the homepage
     When user click contact menu
     And user click close
