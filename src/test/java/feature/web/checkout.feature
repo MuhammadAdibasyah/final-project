@@ -15,17 +15,18 @@ Feature: checkout product
     And user click place order
     And user fill "<name>" , "<country>", "<city>", "<credit>", "<month>", "<year>"
     And user click purchase
-    Then user get "<allert message>"
+    Then user get "<alert message>" based on "<name>" and "<credit>" value
 
     Examples:
-    | name        | country    | city    | credit   | month   | year  |       allert message            | Scenario                      |
-    | supomo      | indonesia  | medan   | 354672   | maret   | 2024  |                                 | input all data                |
-    | supriyad    |            |         | akb123   |         |       |                                 | input name and credit number  |
-    |             |            |         | akb123   |         |       |                                 | not input name                |
+    | name        | country    | city    | credit   | month   | year  |       alert message                    | Scenario                      |
+    | supomo      | indonesia  | medan   | 354672   | maret   | 2024  |  Thank you for your purchase!          | input all data                |
+    | supriyad    |            |         | akb123   |         |       |  Thank you for your purchase!          | input name and credit number  |
+    |             |            |         | akb123   |         |       |  Please fill out Name and Creditcard.  | not input name                |
+    |             |            |         |          |         |       |  Please fill out Name and Creditcard.  | empty data                    |
 
   Scenario: user delete item from cart
     Given user on the cart page
     When user click delete product
-    Then user see product not display
+    Then user see product item not display
 
 

@@ -1,12 +1,11 @@
 package pages.web;
 
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
+import java.util.List;
 import static helper.Utility.driver;
 
 public class CheckoutPage {
@@ -28,6 +27,8 @@ public class CheckoutPage {
     By year =  By.xpath("//input[@id='year']");
     By purchase = By.xpath("//button[normalize-space()='Purchase']");
     By thanks = By.xpath("//h2[.='Thank you for your purchase!']");
+    By delete = By.xpath("//a[.='Delete']");
+    By table = By.xpath("//tbody[@id='tbodyid']/tr");
 
 
     public void clickProduct(){
@@ -41,7 +42,6 @@ public class CheckoutPage {
 
         Alert alert = driver.switchTo().alert();
         alert.accept();
-
     }
 
     public void userClickCartMenu() throws InterruptedException {
@@ -65,10 +65,26 @@ public class CheckoutPage {
         driver.findElement(purchase).click();
     }
 
-    public void userGetMessageThanksForYourPurchases() throws InterruptedException {
-        Assert.assertEquals(driver.findElement(thanks).isDisplayed(),true);
-        Thread.sleep(1500);
+    public void alertValidation (String expectedMessage,String name,String credit) throws InterruptedException {
+        if (name.isEmpty() || credit.isEmpty()){
+
+            Alert alert = driver.switchTo().alert();
+            String actualMessage = alert.getText();
+            Assert.assertEquals(expectedMessage, actualMessage);
+            Thread.sleep(1500);
+        } else {
+            Assert.assertTrue(driver.findElement(thanks).isDisplayed());
+            Thread.sleep(1500);
+        }
     }
 
+    public void userClickDeleteProduct() throws InterruptedException {
+        driver.findElement(delete).click();
+        Thread.sleep(2000);
+    }
 
+    public void validateProductItem(){
+        List<WebElement> rows = driver.findElements(table);
+        Assert.assertEquals(rows.size(),0);
+    }
 }

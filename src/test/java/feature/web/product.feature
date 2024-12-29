@@ -9,15 +9,15 @@ Feature: product list
 
   Scenario Outline: validate product list based on category
     Given user on the home page
-    When user click "<categories>"
-    Then user see all "<list product>"
+    When user click "<element>"
+    Then user see all "<element>"
 
     Examples:
 
-    |   categories  |      list product               |
-    |   Phones      |                                 |
-    |   Laptops     |                                 |
-    |   Monitors    |                                 |
+    |   element     |
+    |   Phones      |
+    |   Laptops     |
+    |   Monitors    |
 
 
   Scenario Outline: validate product detail per item
@@ -35,4 +35,4 @@ Feature: product list
     Given user on the home page
     When user click product
     And user click add to cart
-    Then get allert message
+    Then get alert message

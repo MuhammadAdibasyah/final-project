@@ -18,33 +18,55 @@ public class ProductStep {
         productPage.onTheHomePage();
     }
 
-    @When("user click phones categories")
-    public void userClickPhonesCategories() {
-        productPage.userClickPhonesCategories();
+//    @When("user click phones categories")
+//    public void userClickPhonesCategories() {
+//        productPage.userClickPhonesCategories();
+//    }
+//
+//    @Then("user see all phones product")
+//    public void userSeeAllPhonesProduct() throws InterruptedException {
+//        productPage.userSeeAllPhonesProduct();
+//    }
+//
+//    @When("user click laptops categories")
+//    public void userClickLaptopsCategories() {
+//        productPage.userClickLaptopsCategories();
+//    }
+//
+//    @Then("user see all laptops product")
+//    public void userSeeAllLaptopsProduct() throws InterruptedException {
+//        productPage.userSeeAllLaptopsProduct();
+//    }
+//
+//    @When("user click monitors categories")
+//    public void userClickMonitorsCategories() {
+//        productPage.userClickMonitorsCategories();
+//    }
+//
+//    @Then("user see all monitors product")
+//    public void userSeeAllMonitorsProduct() throws InterruptedException {
+//        productPage.userSeeAllMonitorsProduct();
+//    }
+
+    @When("user click {string}")
+    public void userClick(String product) {
+        productPage.userClick();
     }
 
-    @Then("user see all phones product")
-    public void userSeeAllPhonesProduct() throws InterruptedException {
-        productPage.userSeeAllPhonesProduct();
+    @Then("user see all {string}")
+    public void userSeeAll(String element) throws InterruptedException {
+        productPage.userSeeAll();
     }
 
-    @When("user click laptops categories")
-    public void userClickLaptopsCategories() {
-        productPage.userClickLaptopsCategories();
+    @Then("user see {string}")
+    public void userSee(String arg0) {
     }
 
-    @Then("user see all laptops product")
-    public void userSeeAllLaptopsProduct() throws InterruptedException {
-        productPage.userSeeAllLaptopsProduct();
+    @When("user click product")
+    public void userClickProduct() {
     }
 
-    @When("user click monitors categories")
-    public void userClickMonitorsCategories() {
-        productPage.userClickMonitorsCategories();
-    }
-
-    @Then("user see all monitors product")
-    public void userSeeAllMonitorsProduct() throws InterruptedException {
-        productPage.userSeeAllMonitorsProduct();
+    @Then("get alert message")
+    public void getAlertMessage() {
     }
 }

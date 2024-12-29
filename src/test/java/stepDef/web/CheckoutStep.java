@@ -1,6 +1,7 @@
 package stepDef.web;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.web.CheckoutPage;
@@ -45,9 +46,26 @@ public class CheckoutStep {
         checkoutPage.userClickPurchase();
     }
 
-    @Then("user get message thanks for your purchases")
-    public void userGetMessageThanksForYourPurchases() throws InterruptedException {
-        checkoutPage.userGetMessageThanksForYourPurchases();
+
+    @Then("user get {string} based on {string} and {string} value")
+    public void userGetBasedOnValue(String expectedMessage, String name, String credit) throws InterruptedException {
+        checkoutPage.alertValidation(expectedMessage,name,credit);
     }
 
+    @Given("user on the cart page")
+    public void userOnTheCartPage() throws InterruptedException {
+        checkoutPage.clickProduct();
+        checkoutPage.userClickAddToCart();
+        checkoutPage.userClickCartMenu();
+    }
+
+    @When("user click delete product")
+    public void userClickDeleteProduct() throws InterruptedException {
+        checkoutPage.userClickDeleteProduct();
+    }
+
+    @Then("user see product item not display")
+    public void userSeeProductItemNotDisplay(){
+        checkoutPage.validateProductItem();
+    }
 }
