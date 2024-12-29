@@ -23,15 +23,11 @@ Feature: product list
   Scenario Outline: validate product detail per item
     Given user on the home page
     When user click "<category>"
-    And user click title of product "<item>"
-    Then user see detail of selected product
+    Then The product in the table same with the detail page
 
   Examples:
-    |   item     | category |
-    |  1         | Phones   |
-    |  2         | Phones   |
-    |  6         | Phones   |
-    |  8         | Phones   |
+  | category |
+  | Phones   |
 
 
   Scenario: user add product to cart

@@ -11,7 +11,7 @@ import static helper.Utility.driver;
 public class CheckoutPage {
 
     By phones = By.xpath("(//a[normalize-space()='Phones'])");
-    By phoneProduct = By.xpath("(//h4)[6]");
+    By phoneProduct = By.xpath("(//h4)[1]");
     By addToCart = By.xpath("//a[.='Add to cart']");
     By cart = By.xpath("//a[@id='cartur']");
     By home = By.xpath("//a[contains(.,'Home')]");

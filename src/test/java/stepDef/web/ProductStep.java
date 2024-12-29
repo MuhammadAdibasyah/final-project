@@ -21,7 +21,7 @@ public class ProductStep {
     }
 
     @When("user click {string}")
-    public void userClick(String category) {
+    public void userClick(String category) throws InterruptedException {
         productPage.userClick(category);
     }
 
@@ -52,17 +52,8 @@ public class ProductStep {
         productPage.getAlertMessage(alertMessage);
     }
 
-    @When("user click title of product {string}")
-    public void userClickTitleOfProduct(String item) throws InterruptedException {
-        String productTitle = String.valueOf(productPage.getProductTitleText(item));
-        Hooks.getScenarioContext().setContext("ctxProductTitle", productTitle);
-        productPage.userClickTitleOfProduct(item);
-    }
-
-    @Then("user see detail of selected product")
-    public void userSeeDetailOfSelectedProduct() {
-        String title = (String) Hooks.getScenarioContext().getContext("ctxProductTitle");
-        System.out.println("Value passed: " + title);
-        productPage.validateDetailOfSelectedProduct(title);
+    @Then("The product in the table same with the detail page")
+    public void theProductInTheTableSameWithTheDetailPage() throws InterruptedException {
+    productPage.validateDetailProduct();
     }
 }

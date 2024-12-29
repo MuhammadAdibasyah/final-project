@@ -4,7 +4,11 @@ import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import static helper.Utility.driver;
 
 public class ProductPage {
@@ -19,20 +23,21 @@ public class ProductPage {
     By tablePhone = By.xpath("//div[@id='tbodyid']/div[1]//h4[@class='card-title']");
     By detailProduct = By.xpath("//div[@id='tbodyid']//h2");
     By addToCart = By.xpath("//a[.='Add to cart']");
-
-    private String dynamicItem = "//div[@id='tbodyid']/div[%s]//h4[@class='card-title']";
+    By productTable = By.xpath("//div[@id='tbodyid']/div//h4[@class='card-title']");
 
 
     public WebElement getElementByDynamicText(String text) {
+        String dynamicItem = "//a[normalize-space()='%s']";
         String dynamicXpath = String.format(dynamicItem, text);
-        return driver.findElement(By.xpath(dynamicXpath));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(dynamicXpath)));
     }
 
     public void onTheHomePage(){
         driver.findElement(phones).isDisplayed();
     }
 
-    public void userClick(String category) {
+    public void userClick(String category) throws InterruptedException {
         if (category.equalsIgnoreCase("Phones")) {
             driver.findElement(phones).click();
         } else if (category.equalsIgnoreCase("Laptops")) {
@@ -42,6 +47,7 @@ public class ProductPage {
         } else {
             throw new IllegalArgumentException("Kategori tidak dikenal: " + category);
         }
+        Thread.sleep(2000);
     }
 
 
@@ -70,19 +76,23 @@ public class ProductPage {
         Thread.sleep(1500);
     }
 
-    public String getProductTitleText(String item){
-        WebElement productTitle = getElementByDynamicText(item);
-        return productTitle.getText();
-    }
+    public void validateDetailProduct() throws InterruptedException {
+        List<String> texts = new ArrayList<>();
+        List<WebElement> products = driver.findElements(productTable);
 
-    public void userClickTitleOfProduct(String item) throws InterruptedException {
-        getElementByDynamicText(item).click();
-        Thread.sleep(2000);
-    }
+        for (WebElement product : products) {
+            String text = product.getText();
+            texts.add(text);
+        }
+        System.out.println(texts);
+        for(String text : texts) {
+            WebElement product = getElementByDynamicText(text);
+            product.click();
+            Thread.sleep(2000);
 
-    public void validateDetailOfSelectedProduct(String title) {
-        String detailTitle = driver.findElement(detailProduct).getText();
-        Assert.assertEquals(detailTitle,title);
+            Assert.assertEquals(text, driver.findElement(detailProduct).getText());
+            driver.navigate().back();
+        }
     }
 
     public void userClickProduct() {
@@ -90,10 +100,10 @@ public class ProductPage {
         driver.findElement(addToCart).click();
     }
 
-    public void getAlertMessage(String alretMessage) {
+    public void getAlertMessage(String alertMessage) {
         Alert alert = driver.switchTo().alert();
         String actualMessage = alert.getText();
-        Assert.assertEquals(alretMessage,actualMessage);
+        Assert.assertEquals(alertMessage,actualMessage);
     }
 
 }

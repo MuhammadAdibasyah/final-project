@@ -47,7 +47,7 @@ public class RegisterPage {
 
     public void userClickSignUpButton() throws InterruptedException {
         driver.findElement(signUpButton).click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
     }
 
     public void userGetMessage(String expectedMessage) {
