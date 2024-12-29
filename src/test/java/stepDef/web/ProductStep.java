@@ -4,10 +4,12 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.web.ProductPage;
+import stepDef.Hooks;
 
 public class ProductStep {
 
     ProductPage productPage;
+
 
     public ProductStep(){
         this.productPage = new ProductPage();
@@ -18,55 +20,49 @@ public class ProductStep {
         productPage.onTheHomePage();
     }
 
-//    @When("user click phones categories")
-//    public void userClickPhonesCategories() {
-//        productPage.userClickPhonesCategories();
-//    }
-//
-//    @Then("user see all phones product")
-//    public void userSeeAllPhonesProduct() throws InterruptedException {
-//        productPage.userSeeAllPhonesProduct();
-//    }
-//
-//    @When("user click laptops categories")
-//    public void userClickLaptopsCategories() {
-//        productPage.userClickLaptopsCategories();
-//    }
-//
-//    @Then("user see all laptops product")
-//    public void userSeeAllLaptopsProduct() throws InterruptedException {
-//        productPage.userSeeAllLaptopsProduct();
-//    }
-//
-//    @When("user click monitors categories")
-//    public void userClickMonitorsCategories() {
-//        productPage.userClickMonitorsCategories();
-//    }
-//
-//    @Then("user see all monitors product")
-//    public void userSeeAllMonitorsProduct() throws InterruptedException {
-//        productPage.userSeeAllMonitorsProduct();
-//    }
-
     @When("user click {string}")
-    public void userClick(String product) {
-        productPage.userClick();
+    public void userClick(String category) {
+        productPage.userClick(category);
     }
 
     @Then("user see all {string}")
-    public void userSeeAll(String element) throws InterruptedException {
-        productPage.userSeeAll();
+    public void userSeeAll(String product) throws InterruptedException {
+        productPage.validateProductByCategory(product);
+    }
+
+
+    @When("user click title {string}")
+    public void userClickTitle(String product) {
+        productPage.userClickTitle(product);
+
     }
 
     @Then("user see {string}")
-    public void userSee(String arg0) {
+    public void userSee(String detail) throws InterruptedException {
+        productPage.validateDetailProduct(detail);
     }
 
     @When("user click product")
     public void userClickProduct() {
+        productPage.userClickProduct();
     }
 
-    @Then("get alert message")
-    public void getAlertMessage() {
+    @Then("get alert message {string}")
+    public void getAlertMessage(String alertMessage) {
+        productPage.getAlertMessage(alertMessage);
+    }
+
+    @When("user click title of product {string}")
+    public void userClickTitleOfProduct(String item) throws InterruptedException {
+        String productTitle = String.valueOf(productPage.getProductTitleText(item));
+        Hooks.getScenarioContext().setContext("ctxProductTitle", productTitle);
+        productPage.userClickTitleOfProduct(item);
+    }
+
+    @Then("user see detail of selected product")
+    public void userSeeDetailOfSelectedProduct() {
+        String title = (String) Hooks.getScenarioContext().getContext("ctxProductTitle");
+        System.out.println("Value passed: " + title);
+        productPage.validateDetailOfSelectedProduct(title);
     }
 }
