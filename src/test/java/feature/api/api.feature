@@ -15,7 +15,7 @@ Feature: Automation Rest Api
     When hit url to get list data
     Then validation get status code 404
 
-#    POST
+#  POST
   Scenario: create new user with valid data
     Given prepare url valid for "CREATE_USERS"
     When hit url to create new user
@@ -23,6 +23,16 @@ Feature: Automation Rest Api
     And Validation response body new users
 
   Scenario: create new user with empty name
+    Given prepare url valid for "CREATE_USERS"
+    When hit url to create new user with empty name
+    Then validation get status code 422
+
+  Scenario: create new user with registered email
+    Given prepare url valid for "CREATE_USERS"
+    When hit url to create new user with registered email
+    Then validation get status code 422
+
+  Scenario: create new user with empty data
     Given prepare url valid for "CREATE_USERS"
     When hit url to create new user with empty data
     Then validation get status code 422
@@ -45,3 +55,19 @@ Feature: Automation Rest Api
     And hit api update user
     Then validation get status code 200
     And Validation response body update users
+
+  Scenario: Update user with empty name
+    Given prepare url valid for "CREATE_USERS"
+    When hit url to create new user
+    And validation get status code 201
+    And Validation response body new users
+    And hit api update user with empty name
+    Then validation get status code 422
+
+  Scenario: Update user with input invalid gender
+    Given prepare url valid for "CREATE_USERS"
+    When hit url to create new user
+    And validation get status code 201
+    And Validation response body new users
+    And hit api update user with input invalid gender
+    Then validation get status code 422

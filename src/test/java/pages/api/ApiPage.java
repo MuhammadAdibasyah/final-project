@@ -49,8 +49,16 @@ public class ApiPage {
         res = hitToCreateUser(setURL);
     }
 
+    public void hitUrlToCreateNewUserWithEmptyName() {
+        res = hitToCreateWithEmptyName(setURL);
+    }
+
+    public void hitUrlToCreateNewUserWithRegisteredEmail() {
+        res = hitToCreateWithRegisteredEmail(setURL);
+    }
+
     public void hitUrlToCreateNewUserWithEmptyData() {
-        res = hitToCreateInvalidData(setURL);
+        res = hitToCreateWithEmptyData(setURL);
     }
 
     public void getStatusCode(int status_code){
@@ -100,6 +108,14 @@ public class ApiPage {
 
     public void hitApiUpdateUser() {
         res = hitToUpdateUser(setURL,globalId);
+    }
+
+    public void hitApiUpdateUserWithEmptyName() {
+        res = hitToUpdateUserWithEmptyName(setURL,globalId);
+    }
+
+    public void hitApiUpdateUserWithInvalidGender() {
+        res = hitToUpdateUserWithInvalidGender(setURL,globalId);
     }
 
     public void validationResponseBodyUpdateUsers() {

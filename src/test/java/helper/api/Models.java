@@ -40,12 +40,44 @@ public class Models {
         return request.body(payload.toString()).when().post(endpoint);
     }
 
-    public static Response hitToCreateInvalidData(String endpoint){
+    public static Response hitToCreateWithEmptyName(String endpoint){
 
         String name = "";
         String gender = "male";
         String email = generateRandomEmail();
         String status = "active";
+
+        JSONObject payload = new JSONObject();
+        payload.put("name",name);
+        payload.put("gender",gender);
+        payload.put("email",email);
+        payload.put("status",status);
+
+        setupHeaders();
+        return request.body(payload.toString()).when().post(endpoint);
+    }
+    public static Response hitToCreateWithRegisteredEmail(String endpoint){
+
+        String name = "hayabusa";
+        String gender = "male";
+        String email = "mr_chandrabhan_pillai@botsford.test";
+        String status = "active";
+
+        JSONObject payload = new JSONObject();
+        payload.put("name",name);
+        payload.put("gender",gender);
+        payload.put("email",email);
+        payload.put("status",status);
+
+        setupHeaders();
+        return request.body(payload.toString()).when().post(endpoint);
+    }
+    public static Response hitToCreateWithEmptyData(String endpoint){
+
+        String name = "";
+        String gender = "";
+        String email = "";
+        String status = "";
 
         JSONObject payload = new JSONObject();
         payload.put("name",name);
@@ -74,6 +106,42 @@ public class Models {
         JSONObject payload = new JSONObject();
         payload.put("name",name);
         payload.put("email",email);
+        payload.put("status",status);
+
+        setupHeaders();
+        return request.body(payload.toString()).when().patch(finalEndpoint);
+    }
+
+    public static Response hitToUpdateUserWithEmptyName(String endpoint, String user_id){
+        setupHeaders();
+        String finalEndpoint = endpoint + "/" + user_id;
+
+        String name = "";
+        String email = generateRandomEmail();
+        String status = "inactive";
+
+        JSONObject payload = new JSONObject();
+        payload.put("name",name);
+        payload.put("email",email);
+        payload.put("status",status);
+
+        setupHeaders();
+        return request.body(payload.toString()).when().patch(finalEndpoint);
+    }
+
+    public static Response hitToUpdateUserWithInvalidGender(String endpoint, String user_id){
+        setupHeaders();
+        String finalEndpoint = endpoint + "/" + user_id;
+
+        String name = "surya FM";
+        String email = generateRandomEmail();
+        String gender = "laki-laki";
+        String status = "inactive";
+
+        JSONObject payload = new JSONObject();
+        payload.put("name",name);
+        payload.put("email",email);
+        payload.put("gender",gender);
         payload.put("status",status);
 
         setupHeaders();

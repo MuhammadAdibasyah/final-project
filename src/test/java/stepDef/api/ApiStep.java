@@ -52,9 +52,19 @@ public class ApiStep {
     }
 
     //scenario4
+    @When("hit url to create new user with empty name")
+    public void hitUrlToCreateNewUserWithEmptyName() {
+        apiPage.hitUrlToCreateNewUserWithEmptyName();
+    }
+
     @When("hit url to create new user with empty data")
     public void hitUrlToCreateNewUserWithEmptyData() {
         apiPage.hitUrlToCreateNewUserWithEmptyData();
+    }
+
+    @When("hit url to create new user with registered email")
+    public void hitUrlToCreateNewUserWithRegisteredEmail() {
+        apiPage.hitUrlToCreateNewUserWithRegisteredEmail();
     }
 
     //scenario5
@@ -68,11 +78,20 @@ public class ApiStep {
     @And("hit api update user")
     public void hitApiUpdateUser() {
         apiPage.hitApiUpdateUser();
-
     }
 
     @And("Validation response body update users")
     public void validationResponseBodyUpdateUsers() {
         apiPage.validationResponseBodyUpdateUsers();
+    }
+
+    @And("hit api update user with empty name")
+    public void hitApiUpdateUserWithEmptyName() {
+        apiPage.hitApiUpdateUserWithEmptyName();
+    }
+
+    @And("hit api update user with input invalid gender")
+    public void hitApiUpdateUserWithInputInvalidGender() {
+        apiPage.hitApiUpdateUserWithInvalidGender();
     }
 }
