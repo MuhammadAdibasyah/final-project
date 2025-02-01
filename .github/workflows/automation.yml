@@ -37,7 +37,8 @@ jobs:
         if: always ()
         with:
           name: cucumber
-          path: reports/cucumber.html
+          path: reports/api/cucumber.html
+
   run-Web-automation:
 
     runs-on: ubuntu-latest
@@ -68,5 +69,5 @@ jobs:
         if : always ()
         with :
           name : cucumber
-          path : reports/cucumber.html
+          path : reports/web/cucumber.html
 
