@@ -37,7 +37,7 @@ jobs:
         if: always ()
         with:
           name: cucumber
-          path: reports/api/cucumber.html
+          path: reports/cucumber-api-report.html
 
   run-Web-automation:
 
@@ -69,5 +69,5 @@ jobs:
         if : always ()
         with :
           name : cucumber
-          path : reports/web/cucumber.html
+          path : reports/cucumber.html
 
