@@ -1,4 +1,4 @@
-@Api
+@api
 Feature: Automation Rest Api
 
 #  GET

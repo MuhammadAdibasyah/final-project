@@ -30,7 +30,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Run Test
-        run: ./gradlew cucumber -Ptags="@Api"
+        run: ./gradlew cucumber -Ptags="@api"
 
       - name: Archive test result
         uses: actions/upload-artifact@v4.3.0
