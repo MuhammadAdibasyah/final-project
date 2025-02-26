@@ -40,18 +40,19 @@ configurations {
 
 //def tags = (findProperty('tags')==null) ? 'not @exclude' : findProperty('tags') +'and not @exclude'
 def tags = (findProperty('tags') == null) ? 'not @exclude' : findProperty('tags') + ' and not @exclude'
-
+def reportDir = (tags.contains('@Api')) ? 'html:reports/api-test-report.html' : 'html:reports/web-test-report.html'
 
 task cucumber(){
     description("Running Cucumber Test")
-    dependsOn assemble, compileTestJava
+    dependsOn clean, assemble, compileTestJava
     doLast {
         javaexec {
             main = "io.cucumber.core.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
             args = [
                     '--plugin', 'pretty',
-                    '--plugin', 'html:reports/test-report.html','html:reports/test-api-report.html',
+//                    '--plugin', 'html:reports/test-report.html','html:reports/test-api-report.html',
+                    '--plugin', reportDir,
                     '--glue', 'stepDef',
                     '--tags', "${tags}",
                     'src/test/java/feature'
@@ -59,3 +60,4 @@ task cucumber(){
         }
     }
 }
+

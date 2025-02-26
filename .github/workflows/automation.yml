@@ -36,8 +36,8 @@ jobs:
         uses: actions/upload-artifact@v4.3.0
         if: always ()
         with:
-          name: cucumber
-          path: reports/cucumber-api.html
+          name: api-test-report
+          path: reports/api-test-report.html
 
   run-Web-automation:
 
@@ -68,6 +68,6 @@ jobs:
         uses : actions/upload-artifact@v4.3.0
         if : always ()
         with :
-          name : cucumber
-          path : reports/cucumber-web.html
+          name : web-test-report
+          path : reports/web-test-report.html
 
