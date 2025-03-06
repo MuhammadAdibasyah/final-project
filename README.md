@@ -46,7 +46,7 @@ Repository ini berisi automation test untuk Web UI dan API menggunakan Java deng
 ```
 ### ✅ Menjalankan API Tests
 ```sh
-./gradlew cucumber -Ptags="@Api"
+./gradlew cucumber -Ptags="@api"
 ```
 
 ## 📊 Reporting
