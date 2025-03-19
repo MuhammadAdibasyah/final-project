@@ -20,8 +20,9 @@ public class LoginPage {
         return By.xpath("//*[contains(text (),'" + mssg + "')]");
     }
 
-    public void openBrowser(){
+    public void openBrowser() throws InterruptedException {
         driver.get("https://www.demoblaze.com/");
+        Thread.sleep(5000);
     }
 
     public void userFillUsernameWith(String username) {

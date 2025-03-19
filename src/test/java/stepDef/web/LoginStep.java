@@ -15,7 +15,7 @@ public class LoginStep {
     }
 
     @Given("user on login page")
-    public void userOnLoginPage() {
+    public void userOnLoginPage() throws InterruptedException {
         loginPage.openBrowser();
     }
 

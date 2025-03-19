@@ -54,11 +54,11 @@ Setelah menjalankan test, laporan hasil dapat ditemukan di:
 
 📊 Reporting web UI
 ```
-build/reports/cucumber.html
+reports/web-test-report.html
 ```
 📊 Reporting API
 ```
-build/reports/cucumber-api-report.html
+reports/api-test-report.html
 ```
 
 ## 📌 CI/CD Integration
